@@ -8,6 +8,7 @@ body {
     margin-inline: auto;
     padding: 5ch;
     font: 100%/1.5 system-ui;
+    position: contents;
 
     nav ul, nav li {
       display: contents;
@@ -16,7 +17,8 @@ body {
     nav {
       display: flex;
       margin-bottom: 1em;
-      border-bottom: 1px solid oklch(80% 3% 200);
+      --border-color: oklch(50% 10% 200 / 40%);
+      border-bottom: 2px solid var(--border-color);
     }
     
     nav a {
@@ -27,8 +29,8 @@ body {
       padding: 0.5em;
     }
 
-    nav a.current{
-      border-bottom: 0.4em solid oklch(80% 3% 200);
+    nav a.current {
+      border-bottom: 0.4em solid var(--border-color);
       padding-bottom: 0.1em;
     }
 
@@ -40,6 +42,7 @@ body {
 }
 
 form {
+  display: contents;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1em;
@@ -63,6 +66,13 @@ form button {
 }
 label {
   display: contents;
+  grid-column: 1;
+  margin-block: 0.5em;
+  align-self: center;
+}
+
+labelsc {
+  display: relative;
   grid-column: 1;
   margin-block: 0.5em;
   align-self: center;
@@ -93,3 +103,34 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
 }
+
+html {
+  color-scheme: light dark;
+}
+
+nav {
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 2px solid var(--border-color);
+}
+
+nav a:hover {
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+}
+
+.color-scheme {
+  position: fixed !important;
+  top: 1rem !important;
+  right: 1rem !important;
+  font-size: 90%;
+  font-family: inherit;
+  z-index: 1000; 
+}
+
+
+.color-scheme select {
+  margin: 0;
+  padding: 0.2rem;
+  font-size: 1rem;
+  font-size: 90%;
+}
+
