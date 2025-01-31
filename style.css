@@ -134,3 +134,32 @@ nav a:hover {
   font-size: 90%;
 }
 
+.github-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 列等宽 */
+  text-align: center;
+  max-width: 800px;
+  margin: 20px auto;
+  gap: 10px;
+}
+
+.github-stats div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.github-stats dt {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.github-stats dd {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #222;
+}
