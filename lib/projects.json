@@ -3,31 +3,31 @@
         "title": "ML for Crab Gender Identification",
         "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos fugit eligendi explicabo nihil id nulla soluta ullam a, magnam quod harum tempore, sed obcaecati. Sequi laborum excepturi eaque odio quam."
+        "description": "Kaggle-based Machine Learning model helping crabbers predicting crab features, including the age and sex."
     },
     {
         "title": "Graph-Based Register Allocation",
         "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Quasi eum consectetur eveniet rem quos, illo molestias qui commodi dolorem harum ducimus error amet nesciunt quas dolores perferendis reprehenderit nihil fuga at porro animi rerum ipsam maiores laboriosam? Minus?"
+        "description": "An interference graph structure to optimize compiler register allocation using graph coloring techniques."
     },
     {
         "title": "Irvine Hacks Interactive Game",
         "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Voluptatem, nesciunt libero assumenda voluptas esse quo saepe itaque cum quae reiciendis deleniti ex iusto recusandae fuga praesentium perferendis ad voluptatum totam ducimus enim molestiae eligendi dolorem cumque. Accusamus, saepe!"
+        "description": "Developed an interactive game control system using camera input to track and interpret eye movement."
     },
     {
-        "title": "Excepturi quas inventore fuga.",
+        "title": "Skiplist-Based KV Storage Engine",
         "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Nobis eum eius pariatur autem, maiores harum, eligendi officia magnam voluptates quos quo accusantium, molestiae impedit est ipsa possimus nihil in excepturi error voluptatibus? Ipsum nihil tempora placeat odit nostrum."
+        "description": "A lightweight key-value storage engine with a pressure test, imitating the non-relational database like Redis."
     },
     {
-        "title": "Nemo natus ex non!",
+        "title": "Scheme Interpreter",
         "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Facilis minus voluptas nemo ad quos, ipsum possimus amet nulla dignissimos ipsam iusto atque cumque ducimus? Inventore consectetur odio earum. Tenetur molestiae voluptatem, nam rem amet pariatur odio ut? Eius?"
+        "description": "A scheme programming language interpreter for eexecuting code and scripts"
     },
     {
         "title": "Doloremque quam sint eos?",
