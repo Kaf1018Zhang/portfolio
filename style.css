@@ -4,45 +4,45 @@
 }
 
 body {
-    max-width: 100ch;
-    margin-inline: auto;
-    padding: 5ch;
-    font: 100%/1.5 system-ui;
-    position: contents;
-
-    nav ul, nav li {
-      display: contents;
-    }
-
-    nav {
-      display: flex;
-      margin-bottom: 1em;
-      --border-color: oklch(50% 10% 200 / 40%);
-      border-bottom: 2px solid var(--border-color);
-    }
-    
-    nav a {
-      flex: 1;
-      text-decoration: none;
-      color: inherit;
-      text-align: center;
-      padding: 0.5em;
-    }
-
-    nav a.current {
-      border-bottom: 0.4em solid var(--border-color);
-      padding-bottom: 0.1em;
-    }
-
-    nav a:hover {
-      border-bottom: 0.4em solid var(--color-accent);
-      padding-bottom: 0.1em;
-      background-color: oklch(from var(--color-accent));
-    }
+  max-width: 100ch;
+  margin-inline: auto;
+  padding: 5ch;
+  font: 100%/1.5 system-ui;
+  position: contents;
 }
 
-form {
+nav ul, nav li {
   display: contents;
+}
+
+nav {
+  display: flex;
+  margin-bottom: 1em;
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 2px solid var(--border-color);
+}
+
+nav a {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+}
+
+nav a.current {
+  border-bottom: 0.4em solid var(--border-color);
+  padding-bottom: 0.1em;
+}
+
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  padding-bottom: 0.1em;
+  background-color: oklch(from var(--color-accent));
+}
+
+/* 表单相关 */
+form {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1em;
@@ -64,6 +64,7 @@ form button {
   box-sizing: border-box;
   grid-column: 1 / -1;
 }
+
 label {
   display: contents;
   grid-column: 1;
@@ -71,25 +72,19 @@ label {
   align-self: center;
 }
 
-labelsc {
-  display: relative;
-  grid-column: 1;
-  margin-block: 0.5em;
-  align-self: center;
-}
-
+/* .projects 网格布局 */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   gap: 1.5em;
 }
 
-.projects article{
+.projects article {
   display: grid;
-  grid-template-rows: subgrid;
   gap: 1em;
   grid-row: span 3;
 }
+
 .projects article h2 {
   margin: 0;
 }
@@ -117,6 +112,7 @@ nav a:hover {
   background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
+/* 颜色切换的小组件 */
 .color-scheme {
   position: fixed !important;
   top: 1rem !important;
@@ -126,17 +122,16 @@ nav a:hover {
   z-index: 1000; 
 }
 
-
 .color-scheme select {
   margin: 0;
   padding: 0.2rem;
-  font-size: 1rem;
   font-size: 90%;
 }
 
+/* GitHub stats */
 .github-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 列等宽 */
+  grid-template-columns: repeat(4, 1fr);
   text-align: center;
   max-width: 800px;
   margin: 20px auto;
@@ -178,21 +173,7 @@ nav a:hover {
   margin-left: 20px;
 }
 
-.gridlines path {
-  stroke: none;
-}
-
-.gridlines line {
-  stroke: lightgray;
-  stroke-opacity: 0.7;
-  shape-rendering: crispEdges;
-}
-
-.dots circle {
-  stroke: white;
-  stroke-width: 1px;
-}
-
+/* Tooltip */
 dl.info {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -219,6 +200,7 @@ dl.info[hidden] {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* 小年份 */
 .project-year {
   font-family: "Baskerville", serif;
   font-size: 0.9em;
@@ -227,21 +209,36 @@ dl.info[hidden] {
   margin-top: 5px;
 }
 
+/* 饼图 SVG 样式 */
 #projects-pie-plot {
   max-width: 20em;
   margin-block: 2em;
   overflow: visible;
 }
 
+.chart-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* 图例 */
 .legend {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr)); /* 自适应列布局 */
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
   gap: 12px;
   padding: 1em;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background: white;
   margin-top: 10px;
 }
 
@@ -260,16 +257,53 @@ dl.info[hidden] {
   display: inline-block;
 }
 
-.chart-container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+/* 搜索框样式 */
+.searchBar {
+  width: 100%;
+  max-width: 6000px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+  margin-bottom: 20px;
 }
 
-.container {
-  display: flex;  /* 让子元素左右排列 */
-  align-items: center;  /* 让饼图和图例垂直居中 */
-  gap: 20px;  /* 控制饼图和图例的间距 */
-  max-width: 80%;  /* 避免过度拉伸 */
-  margin: 0 auto;  /* 居中整个容器 */
+/* 默认所有饼图楔形带有过渡动画 */
+path {
+  transition: opacity 300ms ease, fill 300ms ease;
+  cursor: pointer; /* 鼠标移到楔形时，为了可点击 */
+}
+
+/* 利用 :has() 实现“鼠标悬停到饼图任意 path 时，其它 path 变淡” */
+.chart-container:has(path:hover) path {
+  opacity: 0.3;
+}
+path:hover {
+  opacity: 1 !important;
+}
+
+/* 选中的楔形与图例 */
+.selected {
+  /* 可以用你的高亮色，比如红色 */
+  /* 仅当 HTML 中没有用 fill="..." 强制覆盖时，这个才生效 */
+  font-weight: bold;
+  color: red;
+}
+
+/* 让未选中的楔形变淡 */
+path.faded {
+  opacity: 0.3 !important;
+}
+
+/* 选中的图例项高亮 */
+.legend li.selected {
+  font-weight: bold;
+  color: red !important;
+}
+
+/* 选中某个楔形时，未选中的楔形更淡 */
+.chart-container:has(.selected) path:not(.selected) {
+  opacity: 0.3 !important;
 }

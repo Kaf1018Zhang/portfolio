@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>My Projects</title>
+  <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
 
-    <h1 class="projects-title">My Projects</h1>
+  <h1 class="projects-title">My Projects</h1>
 
-    <div class="chart-container">
-        <svg id="projects-pie-plot" viewBox="-50 -50 100 100"></svg>
-        <ul class="legend"></ul>
-    </div>    
+  <!-- ✅ 饼图 & Legend -->
+  <div class="chart-container">
+    <svg id="projects-pie-plot" viewBox="-50 -50 100 100"></svg>
+    <ul class="legend"></ul>
+  </div>
 
-    <div class="projects"></div>
+  <!-- ✅ 搜索框 -->
+  <input
+    class="searchBar"
+    type="search"
+    aria-label="Search projects"
+    placeholder="🔍 Search projects…"
+  />
 
-    <p>
-        The project page is under construction! You can go to my resume page for more info!
-    </p>
+  <!-- ✅ 用于展示项目的容器 -->
+  <div class="projects"></div>
 
-    <script type="module" src="../global.js"></script>
-    <script type="module" src="projects.js"></script>
+  <p>
+    The project page is under construction! You can go to my resume page for more info!
+  </p>
+
+  <!-- 你的 global.js 路径 -->
+  <script type="module" src="../global.js"></script>
+  <!-- 你的 projects.js 路径 -->
+  <script type="module" src="projects.js"></script>
+
 </body>
 </html>
