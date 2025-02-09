@@ -132,3 +132,23 @@ export async function fetchGitHubData(username) {
     return fetchJSON(`https://api.github.com/users/Kaf1018Zhang`);
 }
 
+function renderProject(project) {
+    let container = document.createElement('div');
+    container.classList.add('project-item');
+
+    let title = document.createElement('h3');
+    title.textContent = project.name;
+
+    let description = document.createElement('p');
+    description.textContent = project.description;
+
+    let year = document.createElement('p');
+    year.textContent = `Year: ${project.year}`;
+    year.classList.add('project-year');
+
+    container.appendChild(title);
+    container.appendChild(description);
+    container.appendChild(year);
+
+    return container;
+}

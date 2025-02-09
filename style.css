@@ -164,3 +164,112 @@ nav a:hover {
   color: #222;
 }
 
+.stats {
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+}
+
+.stats dt {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.stats dd {
+  margin-left: 20px;
+}
+
+.gridlines path {
+  stroke: none;
+}
+
+.gridlines line {
+  stroke: lightgray;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+.dots circle {
+  stroke: white;
+  stroke-width: 1px;
+}
+
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  position: fixed;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  transition: opacity 200ms ease-in-out, visibility 200ms;
+}
+
+dl.info[hidden] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tooltip {
+  pointer-events: none;
+  backdrop-filter: blur(5px); 
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.project-year {
+  font-family: "Baskerville", serif;
+  font-size: 0.9em;
+  color: gray;
+  font-variant-numeric: oldstyle-nums;
+  margin-top: 5px;
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
+
+.legend {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr)); /* 自适应列布局 */
+  gap: 12px;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  margin-top: 10px;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  background: var(--color);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.container {
+  display: flex;  /* 让子元素左右排列 */
+  align-items: center;  /* 让饼图和图例垂直居中 */
+  gap: 20px;  /* 控制饼图和图例的间距 */
+  max-width: 80%;  /* 避免过度拉伸 */
+  margin: 0 auto;  /* 居中整个容器 */
+}
