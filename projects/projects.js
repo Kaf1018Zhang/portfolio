@@ -2,7 +2,9 @@ import { fetchJSON, renderProjects } from '../global.js';
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
 let projects = [];
+
 let query = '';
+
 let selectedYear = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -33,36 +35,44 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   searchInput.addEventListener('input', (event) => {
     query = event.target.value.toLowerCase();
-    applyFilters();
+    applyFilters(); 
   });
 });
 
+
 function applyFilters() {
-  let filtered = projects.filter(item => {
+  let searchFiltered = projects.filter(item => {
     let str = Object.values(item).join(' ').toLowerCase();
-    let matchesSearch = str.includes(query);
-    let matchesYear = !selectedYear || item.year === selectedYear;
-    return matchesSearch && matchesYear;
+    return str.includes(query);
   });
 
-  let availableYears = new Set(filtered.map(p => p.year));
+  renderPieChart(searchFiltered);
+
+  let availableYears = new Set(searchFiltered.map(p => p.year));
   if (selectedYear && !availableYears.has(selectedYear)) {
     selectedYear = null;
   }
 
-  renderProjects(filtered, document.querySelector('.projects'), 'h2');
-  renderPieChart(filtered);
+  updateProjectsList(searchFiltered);
+}
+
+function updateProjectsList(searchFiltered) {
+  let finalList;
+  if (!selectedYear) {
+    finalList = searchFiltered;
+  } else {
+    finalList = searchFiltered.filter(p => p.year === selectedYear);
+  }
+  renderProjects(finalList, document.querySelector('.projects'), 'h2');
 }
 
 
 function renderPieChart(projectsData) {
-
   let rolledData = d3.rollups(
     projectsData,
     v => v.length,
     d => d.year
   );
-
   let data = rolledData.map(([year, count]) => ({
     label: year, value: count
   }));
@@ -81,25 +91,23 @@ function renderPieChart(projectsData) {
     .data(arcData)
     .join("path")
     .attr("d", arcGenerator)
-
     .attr("fill", d =>
       d.data.label === selectedYear ? "red" : colorScale(d.data.label)
     )
     .classed("selected", d => d.data.label === selectedYear)
     .classed("faded", d => selectedYear && d.data.label !== selectedYear)
     .on("click", (event, d) => {
-
       if (selectedYear === d.data.label) {
         selectedYear = null;
       } else {
         selectedYear = d.data.label;
       }
-      applyFilters();
+
+      updateProjectsList(projectsData);
       updatePieSelection(colorScale);
     })
     .on("mouseenter", function() {
       if (!selectedYear) {
-
         d3.selectAll("path").classed("faded", true);
         d3.select(this).classed("faded", false);
       }
@@ -119,20 +127,18 @@ function renderPieChart(projectsData) {
     .classed("selected", d => d.label === selectedYear)
     .html(d => `<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
     .on("click", (event, d) => {
-
       if (selectedYear === d.label) {
         selectedYear = null;
       } else {
         selectedYear = d.label;
       }
-      applyFilters();
+      updateProjectsList(projectsData);
       updatePieSelection(colorScale);
     })
     .on("mouseenter", function(_, d) {
       if (!selectedYear) {
         let wedgePaths = svg.selectAll("path");
         wedgePaths.classed("faded", true);
-
         wedgePaths.filter(arc => arc.data.label === d.label)
                   .classed("faded", false);
       }
@@ -148,4 +154,14 @@ function renderPieChart(projectsData) {
 
 function updatePieSelection(colorScale) {
 
+  d3.select("#projects-pie-plot").selectAll("path")
+    .attr("fill", d =>
+      d.data.label === selectedYear ? "red" : colorScale(d.data.label)
+    )
+    .classed("selected", d => d.data.label === selectedYear)
+    .classed("faded", d => selectedYear && d.data.label !== selectedYear);
+
+
+  d3.select(".legend").selectAll("li")
+    .classed("selected", d => d.label === selectedYear);
 }
