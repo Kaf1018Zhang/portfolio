@@ -18,6 +18,7 @@ const ARE_WE_HOME = document.documentElement.classList.contains('home');
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
+
 document.body.insertAdjacentHTML(
     'afterbegin',
     `
@@ -127,9 +128,8 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     });
 }
 
-
 export async function fetchGitHubData(username) {
-    return fetchJSON(`https://api.github.com/users/${username}`);
+    return fetchJSON(`https://api.github.com/users/Kaf1018Zhang`);
 }
 
 function renderProject(project) {

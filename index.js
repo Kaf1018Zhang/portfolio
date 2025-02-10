@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const githubData = await fetchGitHubData('Kaf1018Zhang');
 
     if (githubData) {
-        profileStats.innerHTML = `
+        profileStats.innerHTML = 
             <dl class="github-stats">
                 <div>
                     <dt>FOLLOWERS</dt>
@@ -43,10 +43,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <dd>${githubData.public_gists}</dd>
                 </div>
             </dl>
-        `;
+        ;
     } else {
         profileStats.innerHTML = "<p>Failed to load GitHub data.</p>";
     }
     
 });
-
