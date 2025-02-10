@@ -276,7 +276,7 @@ path:hover {
 }
 
 .selected {
-
+  
   font-weight: bold;
   color: red;
 }
