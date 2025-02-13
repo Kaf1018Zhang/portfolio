@@ -3,12 +3,21 @@
   accent-color: var(--color-accent);
 }
 
+html {
+  color-scheme: light dark;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 body {
   max-width: 100ch;
   margin-inline: auto;
   padding: 5ch;
-  font: 100%/1.5 system-ui;
-  position: contents;
+  font: 100%/1.5 system-ui, sans-serif;
+  position: relative;
 }
 
 nav ul, nav li {
@@ -97,19 +106,6 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-html {
-  color-scheme: light dark;
-}
-
-nav {
-  --border-color: oklch(50% 10% 200 / 40%);
-  border-bottom: 2px solid var(--border-color);
-}
-
-nav a:hover {
-  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
-}
-
 .color-scheme {
   position: fixed !important;
   top: 1rem !important;
@@ -195,7 +191,6 @@ dl.info[hidden] {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-
 .project-year {
   font-family: "Baskerville", serif;
   font-size: 0.9em;
@@ -203,7 +198,6 @@ dl.info[hidden] {
   font-variant-numeric: oldstyle-nums;
   margin-top: 5px;
 }
-
 
 #projects-pie-plot {
   max-width: 20em;
@@ -267,29 +261,32 @@ path {
   transition: opacity 300ms ease, fill 300ms ease;
   cursor: pointer;
 }
-
 .chart-container:has(path:hover) path {
   opacity: 0.3;
 }
 path:hover {
   opacity: 1 !important;
 }
-
-.selected {
-  
-  font-weight: bold;
-  color: red;
-}
-
 path.faded {
   opacity: 0.3 !important;
 }
 
-.legend li.selected {
-  font-weight: bold;
-  color: red !important;
+.selected {
+  fill: #ff6b6b !important;
+  stroke: #900 !important;
+  stroke-width: 1.5px !important;
 }
 
-.chart-container:has(.selected) path:not(.selected) {
-  opacity: 0.3 !important;
+@keyframes marching-ants {
+  to { stroke-dashoffset: -8; }
+}
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+.overlay {
+  cursor: crosshair;
 }

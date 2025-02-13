@@ -1,68 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Analysis</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="main.js" defer></script>
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Code Analysis</title>
 
-        dl.info {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 5px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            position: fixed;
-            top: 1em;
-            left: 1em;
-            transition: opacity 300ms ease-in-out, visibility 300ms;
-        }
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 
-        dl.info[hidden] {
-            opacity: 0;
-            visibility: hidden;
-        }
+  <!-- 这里引入 main.js，注意路径要确保正确 -->
+  <script src="main.js" defer></script>
 
-        .tooltip {
-            pointer-events: none;
-        }
+  <!-- 全局样式文件在上层目录 -->
+  <link rel="stylesheet" href="../style.css" />
 
-        #chart {
-            max-width: 100%;
-            overflow-x: auto;
-        }
+  <style>
+    /* 可以放少量与图表直接相关的内联 CSS；其余写在 style.css 中 */
 
-        circle {
-            transition: transform 200ms ease-in-out;
-            transform-origin: center;
-            transform-box: fill-box;
-        }
+    /* tooltip: 具体布局 */
+    dl.info {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      position: fixed;
+      top: 1em;
+      left: 1em;
+      transition: opacity 300ms ease-in-out, visibility 300ms;
+    }
 
-        circle:hover {
-            transform: scale(1.5);
-        }
-    </style>
+    dl.info[hidden] {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .tooltip {
+      pointer-events: none; /* 让鼠标穿透 tooltip */
+    }
+
+    /* 提示：散点在 hover 时放大 */
+    circle {
+      transition: transform 200ms ease-in-out;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    circle:hover {
+      transform: scale(1.5);
+    }
+  </style>
 </head>
 <body>
-    <h1>Code Analysis</h1>
-    <p>Summary statistics of the codebase.</p>
-    
-    <div id="stats"></div>
+  <h1>Code Analysis</h1>
+  <p>Summary statistics of the codebase.</p>
 
-    <h2>Commits by time of day</h2>
-    <div id="chart"></div>
+  <!-- (1) 显示统计信息的容器 -->
+  <div id="stats"></div>
 
-    <dl id="commit-tooltip" class="info tooltip" hidden>
-        <dt>Commit</dt>
-        <dd><a href="" id="commit-link" target="_blank"></a></dd>
-        <dt>Date</dt><dd id="commit-date"></dd>
-        <dt>Time</dt><dd id="commit-time"></dd>
-        <dt>Author</dt><dd id="commit-author"></dd>
-        <dt>Lines Edited</dt><dd id="commit-lines"></dd>
-    </dl>
+  <!-- 选中刷选后的统计 -->
+  <p id="selection-count">No commits selected</p>
+  <dl id="language-breakdown" class="stats"></dl>
+
+  <h2>Commits by time of day</h2>
+  <div id="chart"></div>
+
+  <!-- 提交信息 tooltip -->
+  <dl id="commit-tooltip" class="info tooltip" hidden>
+    <dt>Commit</dt>
+    <dd><a href="" id="commit-link" target="_blank"></a></dd>
+
+    <dt>Date</dt><dd id="commit-date"></dd>
+    <dt>Time</dt><dd id="commit-time"></dd>
+    <dt>Author</dt><dd id="commit-author"></dd>
+    <dt>Lines Edited</dt><dd id="commit-lines"></dd>
+  </dl>
 </body>
 </html>
