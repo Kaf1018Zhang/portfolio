@@ -1,9 +1,8 @@
 let data = [];
 let commits = [];
-let xScale, yScale; // 定义全局变量
+let xScale, yScale;
 let svg, dots;
 
-// 📌 Step 1: 定义 Tooltip 相关函数
 function updateTooltipContent(commit) {
     const link = document.getElementById('commit-link');
     const date = document.getElementById('commit-date');
@@ -41,12 +40,10 @@ function updateTooltipPosition(event) {
     let left = event.clientX + 10;
     let top = event.clientY + 10;
 
-    // 防止 tooltip 超出右侧
     if (left + tooltipWidth > window.innerWidth) {
         left = event.clientX - tooltipWidth - 10;
     }
 
-    // 防止 tooltip 超出底部
     if (top + tooltipHeight > window.innerHeight) {
         top = event.clientY - tooltipHeight - 10;
     }
@@ -55,7 +52,6 @@ function updateTooltipPosition(event) {
     tooltip.style.top = `${top}px`;
 }
 
-// 📌 Step 2: 加载数据
 async function loadData() {
     data = await d3.csv('loc.csv', (row) => ({
         ...row,
@@ -69,10 +65,9 @@ async function loadData() {
     console.log(data);
     processCommits();
     displayStats();
-    createScatterplot(); // 确保在数据加载后创建散点图
+    createScatterplot();
 }
 
-// 📌 Step 3: 处理提交数据
 function processCommits() {
     commits = d3.groups(data, (d) => d.commit).map(([commit, lines]) => {
         let first = lines[0]; 
@@ -94,7 +89,6 @@ function processCommits() {
     console.log(commits);
 }
 
-// 📌 Step 4: 显示统计数据
 function displayStats() {
     const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
@@ -132,18 +126,16 @@ function createScatterplot() {
 
     yScale = d3.scaleLinear().domain([0, 24]).range([usableArea.bottom, usableArea.top]);
 
-    // ✅ 添加 **横向网格线**
     svg.append('g')
         .attr('class', 'gridlines')
         .attr('transform', `translate(${usableArea.left}, 0)`)
         .call(d3.axisLeft(yScale)
-            .tickSize(-usableArea.width) // 横向网格线
-            .tickFormat("")) // 不显示刻度文本
+            .tickSize(-usableArea.width)
+            .tickFormat(""))
         .selectAll('line')
-        .style('stroke', '#ddd') // 让网格线颜色更淡
-        .style('stroke-dasharray', '3,3'); // 添加虚线样式
+        .style('stroke', '#ddd') 
+        .style('stroke-dasharray', '3,3');
 
-    // ✅ X 轴
     svg.append('g')
         .attr('transform', `translate(0, ${usableArea.bottom})`)
         .call(d3.axisBottom(xScale))
@@ -151,7 +143,6 @@ function createScatterplot() {
         .style('font-size', '12px')
         .style('fill', '#555');
 
-    // ✅ Y 轴
     svg.append('g')
         .attr('transform', `translate(${usableArea.left}, 0)`)
         .call(d3.axisLeft(yScale).tickFormat((d) => `${String(d % 24).padStart(2, '0')}:00`))
@@ -159,18 +150,14 @@ function createScatterplot() {
         .style('font-size', '12px')
         .style('fill', '#555');
 
-    // 计算 `totalLines` 的范围
     const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
 
-    // **使用平方根比例尺修正视觉感知**
     const rScale = d3.scaleSqrt()
         .domain([minLines, maxLines])
-        .range([3, 40]); // 调整最小和最大半径，避免点过小或过大
+        .range([3, 40]); 
 
-    // ✅ **所有点统一颜色**
-    const dotColor = "#1f77b4"; // 统一使用深蓝色
+    const dotColor = "#1f77b4"; 
 
-    // **确保大点先绘制，小点在上方**
     const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
 
     dots = svg.append('g').attr('class', 'dots');
