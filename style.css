@@ -139,29 +139,8 @@ h1, h2, h3, h4, h5, h6 {
 .stats dd {
   margin-left: 20px;
 }
-dl.info {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 5px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  padding: 12px;
-  position: fixed;
-  font-size: 14px;
-  font-family: Arial, sans-serif;
-  color: #333;
-  transition: opacity 200ms ease-in-out, visibility 200ms;
-}
-dl.info[hidden] {
-  opacity: 0;
-  visibility: hidden;
-}
-.tooltip {
-  pointer-events: none;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
+
+
 .project-year {
   font-family: "Baskerville", serif;
   font-size: 0.9em;
@@ -252,4 +231,122 @@ path.faded {
 }
 .overlay {
   cursor: crosshair;
+}
+
+
+#controls {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+#timeSlider {
+  margin-left: 1rem;
+  flex: 1;
+}
+
+#chart {
+  margin-bottom: 1rem;
+  min-height: 400px;
+}
+
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 10px;
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  transition: opacity 300ms ease-in-out, visibility 300ms;
+}
+dl.info[hidden] {
+  opacity: 0;
+  visibility: hidden;
+}
+.tooltip {
+  pointer-events: none;
+}
+
+.dots circle {
+  transition: transform 0.2s ease-in-out, fill-opacity 0.2s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.dots circle:hover {
+  transform: scale(1.3);
+}
+
+.files {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  margin-top: 1rem;
+}
+
+.files > div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.files dt {
+  grid-column: 1;
+}
+
+.files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
+.line {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  background: steelblue; 
+  border-radius: 50%;
+}
+
+.files dt code {
+  font-family: monospace;
+}
+.files dt code + small {
+  display: block;
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+#scrolly-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#scrolly {
+  width: 95%;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+#scrolly-items {
+  position: relative;
+  min-height: 100%;
+}
+
+.story-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
